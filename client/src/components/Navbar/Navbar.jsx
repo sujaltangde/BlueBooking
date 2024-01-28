@@ -21,13 +21,13 @@ export const Navbar = () => {
           </Link>
 
           <div className=" w-3/4 hidden md:flex items-center justify-end flex-row gap-7">
-            <Link to="/support" className="font-medium hover:underline text-lg">
+            <Link onClick={()=>setToggle(!toggle)} to="/support" className="font-medium hover:underline text-lg">
               Support
             </Link>
-            <Link to="/about" className="font-medium hover:underline text-lg">
+            <Link onClick={()=>setToggle(!toggle)} to="/about" className="font-medium hover:underline text-lg">
               About
             </Link>
-            <Link
+            <Link onClick={()=>setToggle(!toggle)}
               to="/auth/login"
               className="bg-blue-500 rounded hover:underline text-white px-8 font-semibold  py-2 "
             >
@@ -46,9 +46,9 @@ export const Navbar = () => {
         </div>
         <div className={`md:hidden ${toggle ? "flex" : "hidden"}   px-4 pt-2 pb-3 shadow-sm shadow-gray-300     bg-white `}>
           <div className="flex flex-col  gap-3 ">
-            <Link className="text-base font-medium">About</Link>
-            <Link className="text-base font-medium">Support</Link>
-            <Link className="text-base font-medium">Sign In</Link>
+            <Link onClick={()=>setToggle(!toggle)} to="/about" className="text-lg font-medium">About</Link>
+            <Link onClick={()=>setToggle(!toggle)} to="/support" className="text-lg font-medium">Support</Link>
+            <Link onClick={()=>setToggle(!toggle)} to="/auth/login" className="text-lg font-medium">Sign In</Link>
           </div>
          
         </div>

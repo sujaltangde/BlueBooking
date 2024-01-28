@@ -1,28 +1,48 @@
-import { Routes, Route } from "react-router"
-import { About } from "./components/About/About"
-import { NumIncrDecr } from "./components/Test/NumIncrDecr"
-import { Home } from "./components/Home/Home"
-import { Navbar } from "./components/Navbar/Navbar"
+import { useEffect, useState } from "react";
+import { Routes, Route, useNavigate } from "react-router";
+import { useLocation, Navigate } from "react-router-dom";
+import { About } from "./components/About/About";
+import { NumIncrDecr } from "./components/Test/NumIncrDecr";
+import { Home } from "./components/Home/Home";
+import { Navbar } from "./components/Navbar/Navbar";
+import { Login } from "./components/Auth/Login";
+import { Register } from "./components/Auth/Register";
+import { NotFound } from "./components/NotFound/NotFound";
+import { Support } from "./components/Support/Support";
 
 function App() {
+  const [path, setPath] = useState("");
 
+  let location = useLocation();
+
+  useEffect(() => {
+    setPath(location.pathname);
+    console.log(location.pathname);
+  }, [location]);
 
   return (
     <>
-<Navbar/>
+      {path === "/404" ||
+      path === "/auth/login" ||
+      path === "/auth/register" ? null : (
+        <Navbar />
+      )}
+      <Routes>
+        
+        <Route path="*" element={<Navigate to="/404" replace />} />
+        <Route path="/404" element={<NotFound />} />
+        
 
-<Routes>    
+        <Route exact path="/" element={<Home />} />
 
-{/* <Route path="*" element={<NotFound />} /> */}
-<Route exact path="/" element={<Home/>} />
+        <Route path="/support" element={<Support />} />
+        <Route path="/about" element={<About />} />
 
-<Route path="/about" element={<About />} />
-
-
-</Routes>    
-
+        <Route path="/auth/login" element={<Login />} />
+        <Route path="/auth/register" element={<Register />} />
+      </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

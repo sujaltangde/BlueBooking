@@ -1,9 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { MetaData } from '../MetaData'
+
+
 
 export const Home = () => {
+
+
   return (
     <>
+<MetaData title={"BlueBooking - Hotel Bookings"} />
       <div className="bg-custom-color min-h-screen pt-16 flex flex-col justify-center ">
         <div className=" pt-24 min-h-[90vh] md:px-0 px-5">
           <div className="text-center  md:text-5xl text-3xl  ">

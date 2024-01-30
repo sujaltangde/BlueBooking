@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { signInSignUpWithGoogle } from "../../Firebase";
+import { MetaData } from '../MetaData'
+
 
 export const Login = () => {
   const [checked, setChecked] = useState(false);
@@ -25,6 +27,7 @@ export const Login = () => {
 
   return (
     <>
+<MetaData title={"Login"} />
       <div className="min-h-screen  bg-custom-color md:px-12 px-4 flex justify-center items-center pb-7">
         <div className=" md:w-1/3 bg-white ">
           <div className=" py-6 px-7 md:px-8 w-full rounded shadow-sm shadow-gray-500">
@@ -38,7 +41,8 @@ export const Login = () => {
                   <img
                     src="/images/googleIcon.png"
                     className="h-5"
-                    alt="Google Icon"
+                    alt="googleIcon.png"
+                    loading="lazy"
                   />
                 </span>{" "}
                 <span className="font-medium">Sign in with Google</span>

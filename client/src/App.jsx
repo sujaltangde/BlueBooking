@@ -2,13 +2,15 @@ import { useEffect, useState } from "react";
 import { Routes, Route, useNavigate } from "react-router";
 import { useLocation, Navigate } from "react-router-dom";
 import { About } from "./components/About/About";
-import { NumIncrDecr } from "./components/Test/NumIncrDecr";
+import {ToastContainer} from 'react-toastify'
 import { Home } from "./components/Home/Home";
 import { Navbar } from "./components/Navbar/Navbar";
 import { Login } from "./components/Auth/Login";
 import { Register } from "./components/Auth/Register";
 import { NotFound } from "./components/NotFound/NotFound";
 import { Support } from "./components/Support/Support";
+import 'react-toastify/dist/ReactToastify.css';
+import { Footer } from "./components/Footer/Footer";
 
 function App() {
   const [path, setPath] = useState("");
@@ -41,6 +43,24 @@ function App() {
         <Route path="/auth/login" element={<Login />} />
         <Route path="/auth/register" element={<Register />} />
       </Routes>
+
+      <Footer/>
+
+
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        className="mt-14 font-bold  "
+
+      />
     </>
   );
 }

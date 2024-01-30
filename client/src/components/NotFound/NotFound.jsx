@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { MetaData } from '../MetaData'
 
 export const NotFound = () => {
   return (
     <>
+<MetaData title={"Page not found"} />
       <div className="min-h-screen flex items-center bg-custom-color justify-center">
         <div className="flex md:flex-row flex-col md:justify-between w-full md:px-32 items-center">
           <div className="md:flex hidden ">

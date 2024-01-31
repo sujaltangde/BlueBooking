@@ -29,7 +29,7 @@ export const Navbar = () => {
             </Link>
             <Link onClick={()=>setToggle(!toggle)}
               to="/auth/login"
-              className="bg-blue-500 rounded hover:underline text-white px-8 font-semibold  py-2 "
+              className="bg-blue-500  hover:bg-blue-600 rounded  text-white px-8 font-semibold  py-2 "
             >
               Sign In
             </Link>

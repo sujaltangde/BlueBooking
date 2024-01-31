@@ -1,15 +1,14 @@
-import React,{useState} from "react";
-import {Link} from 'react-router-dom'
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { MdOutlinePersonOutline } from "react-icons/md";
 import { signInSignUpWithGoogle } from "../../Firebase";
-import { MetaData } from '../MetaData'
+import { MetaData } from "../MetaData";
 export const Register = () => {
-  
   const [checked, setChecked] = useState(false);
   const [userData, setUserData] = useState({});
-  
+
   const registerWithGoogle = async () => {
     try {
       const googleUserData = await signInSignUpWithGoogle();
@@ -18,22 +17,22 @@ export const Register = () => {
       console.error(error);
     }
   };
-  
+
   const register = (e) => {
     e.preventDefault();
-    
+
     console.log(userData);
   };
-  
+
   return (
     <>
-    <MetaData title={"Register"} />
-       <div className="min-h-screen  bg-custom-color md:px-12 px-4 flex justify-center items-center pb-7">
+      <MetaData title={"Register"} />
+      <div className="min-h-screen  bg-custom-color md:px-12 px-4 flex justify-center items-center pb-7">
         <div className=" md:w-1/3 bg-white ">
           <div className=" py-6 px-7 md:px-8 w-full rounded shadow-sm shadow-gray-500">
             <div className="text-4xl font-semibold text-gray-900 ">Sign up</div>
             <div className="pt-4">
-            <button
+              <button
                 // onClick={() => loginWithGoogle()}
                 className="border flex items-center gap-2 py-2 px-4 text-sm bg-white  rounded-sm shadow-sm focus:outline-none"
               >
@@ -100,16 +99,40 @@ export const Register = () => {
                   />
                 </div>
               </div>
-              <div onClick={()=>setChecked(!checked)}  className="flex cursor-pointer items-center gap-2">
-               <input type="checkbox" checked={checked} name="" id="" /> <p className="text-sm">I agree to the Terms and Conditions.</p>
+              <div
+                onClick={() => setChecked(!checked)}
+                className="flex cursor-pointer items-center gap-2"
+              >
+                <input type="checkbox" checked={checked} name="" id="" />{" "}
+                <p className="text-sm">I agree to the Terms and Conditions.</p>
               </div>
               <div className="pt-1">
-                <button className="w-full font-semibold bg-blue-500 py-1.5 rounded text-white">
-                  Sign up
-                </button>
+                {!checked ? (
+                  <button
+                    disabled={!checked}
+                    type="submit"
+                    className="w-full font-semibold bg-blue-500   py-1.5 rounded text-white"
+                  >
+                    Sign up
+                  </button>
+                ) : (
+                  <button
+                    disabled={!checked}
+                    type="submit"
+                    className="w-full font-semibold bg-blue-500  hover:bg-blue-600 py-1.5 rounded text-white"
+                  >
+                    Sign up
+                  </button>
+                )}
               </div>
               <div className="text-sm">
-                <p>Already have an account? <Link to="/auth/login" className="text-blue-600 underline">Sign in</Link>  now.</p>
+                <p>
+                  Already have an account?{" "}
+                  <Link to="/auth/login" className="text-blue-600 underline">
+                    Sign in
+                  </Link>{" "}
+                  now.
+                </p>
               </div>
             </form>
           </div>

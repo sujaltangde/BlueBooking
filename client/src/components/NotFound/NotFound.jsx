@@ -7,7 +7,7 @@ export const NotFound = () => {
     <>
 <MetaData title={"Page not found"} />
       <div className="min-h-screen flex items-center bg-custom-color justify-center">
-        <div className="flex md:flex-row flex-col md:justify-between w-full md:px-32 items-center">
+        <div className="flex md:flex-row flex-col md:justify-between w-full  md:px-32 items-center">
           <div className="md:flex hidden ">
             <div className="flex flex-col justify-start items-start">
               <div>

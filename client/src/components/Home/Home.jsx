@@ -28,7 +28,7 @@ export const Home = () => {
             </p>
           </div>
           <div className="flex justify-center items-center pt-4">
-            <Link to="/hotel" className="bg-blue-500 text-white rounded font-medium md:px-12 px-8 text-base py-2  md:text-lg hover:underline">
+            <Link to="/hotel" className="bg-blue-500 text-white rounded font-medium md:px-12 px-8 text-base py-2  md:text-lg  hover:bg-blue-600 ">
               Find Your Perfect Stay
             </Link>
           </div>

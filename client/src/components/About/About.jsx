@@ -7,16 +7,16 @@ export const About = () => {
     <>
       <MetaData title={"About"} />
 
-      <div className="min-h-screen pt-16 px-10">
+      <div className="min-h-screen pt-16 md:px-10 px-5 bg-custom-color">
         <div className="pt-8 ">
           <p className="font-bold text-6xl ">About Us</p>
         </div>
 
         <div>
-          <p className="pb-2 pt-5">
+          <p className="pb-1 pt-5 font-semibold">
             Welcome to BlueBooking – Your Gateway to Seamless Hotel Experiences!
           </p>
-          <p>
+          <p className="">
             At BlueBooking, we believe that every journey begins with a
             comfortable and memorable stay. We understand the importance of
             finding the perfect accommodation that suits your preferences,
@@ -80,7 +80,7 @@ export const About = () => {
           </ul>
         </div>
 
-        <div className="pb-12 pt-6">
+        <div className=" pt-6">
           <p className="pb-4">
             {" "}
             Whether you're planning a solo adventure, a romantic getaway, or a
@@ -89,7 +89,7 @@ export const About = () => {
             discover incredible destinations and create lasting memories through
             hassle-free hotel reservations.
           </p>
-          <p>
+          <p className="font-semibold">
             Thank you for choosing BlueBooking – Where Comfort Meets
             Convenience!
           </p>

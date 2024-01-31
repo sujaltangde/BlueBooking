@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -23,7 +23,7 @@ const provider = new GoogleAuthProvider();
 
 export const signInSignUpWithGoogle = () => {
     return new Promise((resolve, reject) => {
-      signInWithPopup(auth, provider)
+      signInWithRedirect(auth, provider)
         .then((result) => {
           const userData = {
             name: result.user.displayName,
@@ -37,5 +37,8 @@ export const signInSignUpWithGoogle = () => {
         });
     });
   };
+
+
+
 
 

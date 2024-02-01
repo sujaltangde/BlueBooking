@@ -23,7 +23,7 @@ export const NotFound = () => {
               <div className="pt-6">
                 <Link
                   to="/"
-                  className="bg-blue-500 px-8 py-3 rounded hover:underline font-semibold text-base text-white"
+                  className="bg-blue-500 px-8 py-3 rounded hover:bg-blue-600 font-semibold text-base text-white"
                 >
                   Go Home
                 </Link>
@@ -53,7 +53,7 @@ export const NotFound = () => {
               <div className="pt-6">
                 <Link
                   to="/"
-                  className="bg-blue-500 px-8 py-3 rounded font-semibold text-sm text-white"
+                  className="bg-blue-500 hover:bg-blue-600 px-8 py-3 rounded font-semibold text-sm text-white"
                 >
                   Go Home
                 </Link>

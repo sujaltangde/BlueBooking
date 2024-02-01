@@ -16,7 +16,37 @@ app.use(
 
 app.use(fileUpload());
 
+
 // Routes Import
+
+// const user = require('./routes/UserRoutes.js')
+
+
+
+// app.use("/api",user);
+
+
+
+
+app.get("/get/users", async (req,res) => {
+  try{
+  
+      const users = await pool.query(
+          "SELECT * FROM users"
+      );
+
+      res.status(200).json({
+          success: true,
+          users: users.rows
+      })        
+
+  }catch(err){
+      res.status(500).json({
+          success: false,
+          message: err.message
+      })
+  }
+})
 
 
 

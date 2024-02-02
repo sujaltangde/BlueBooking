@@ -19,11 +19,11 @@ app.use(fileUpload());
 
 // Routes Import
 
-// const user = require('./routes/UserRoutes.js')
+const user = require('./routes/userRoutes.js')
 
 
 
-// app.use("/api",user);
+app.use("/api",user);
 
 
 

@@ -1,15 +1,16 @@
 const express = require('express')
-// const {registerUser, loginUser, isLogin} = require('../controllers/UserControls')
-// const {isAuthenticated} = require('../middleware/auth') nm
+const {registerUser, loginUser, isLogin
+} = require('../controllers/userControls')
+const {isAuthenticated} = require('../middlewares/auth') 
 
 const router = express.Router() ;
 
 
-// router.route("/register").post(registerUser) ;
+router.route("/register").post(registerUser) ;
 
-// router.route("/loginUser").post(loginUser) ;
+router.route("/login").post(loginUser) ;
 
-// router.route("/isLogin").get(isAuthenticated,isLogin) ;
+router.route("/isLogin").get(isAuthenticated,isLogin) ;
 
 
 module.exports = router ;

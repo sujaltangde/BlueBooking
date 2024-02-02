@@ -1,111 +1,161 @@
-const bcrypt = require('bcrypt')
-// const {createToken} = require('../middleware/auth')
-const pool = require("../config/database/db.js");
+const bcrypt = require("bcrypt");
+const { createToken } = require("../middlewares/auth");
+const User = require("../models/userModel");
 
-// exports.registerUser = async (req,res) =>{
-//     try{
+exports.registerUser = async (req, res) => {
+  try {
+    const { name, email, password, isGoogleUser, role } = req.body;
 
-//         const { name, email, password } = req.body ;
+    let hashPass;
+    let user;
 
-//         const hashPass = await bcrypt.hash(password,10) ;
-        
-//         const user = await User.create({
-//             name,
-//             email,
-//             password: hashPass
-//         })
+    if (isGoogleUser) {
+      hashPass = await bcrypt.hash(password, 10);
 
-//         const token = createToken(user._id,user.email) ; 
-        
-//         res.status(201).json({
-//             success: true,
-//             message: "User registered",
-//             user,
-//             token
-//         })
+      user = await User.create({
+        name,
+        email,
+        password: hashPass,
+        isGoogleUser,
+        role,
+      });
 
-//     }catch(err){
-//         res.status(500).json({
-//             success: false,
-//             message: err.message
-//         })
-//     }
-// }
+      const token = createToken(user._id, user.email);
 
+      return res.status(201).json({
+        success: true,
+        message: "User registered",
+        user,
+        token,
+      });
+    } else {
+      hashPass = await bcrypt.hash(password, 10);
 
-// exports.loginUser = async (req,res) => {
-//     try{
-//         const {email, password} = req.body ;
+      user = await User.create({
+        name,
+        email,
+        password: hashPass,
+        isGoogleUser,
+        role,
+      });
 
-//         if(!email || !password){
-//             return res.status(400).json({
-//                 success: false,
-//                 message: "Please Enter email and password"
-//             })
-//         }
+      const token = createToken(user._id, user.email);
 
-//         const user = await User.findOne({email})
+      return res.status(201).json({
+        success: true,
+        message: "User registered",
+        user,
+        token,
+      });
+    }
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
 
-//         if(!user){
-//             return res.status(401).json({
-//                 success: false,
-//                 message: "User does not exists"
-//             })
-//         }
+exports.loginUser = async (req, res) => {
+  try {
+    const { email, password, googleLogin } = req.body;
 
-//         const isMatch = await bcrypt.compare(password, user.password)
+    if (!email || !password) {
+      return res.status(400).json({
+        success: false,
+        message: "Please Enter email and password",
+      });
+    }
 
-//         if(!isMatch){
-//             return res.status(400).json({
-//                 success: false,
-//                 message: "Wrong Credentials"
-//             })
-//         }else{
+    if (googleLogin) {
+      const user = await User.findOne({ email });
 
-//             const token = createToken(user._id,user.email)
+      if (!user) {
+        return res.status(401).json({
+          success: false,
+          message: "User does not exists",
+        });
+      }
 
-//             res.status(200).json({
-//                 success: true,
-//                 message: "User Logged In successfully",
-//                 token
-//             })
+      if (user.isGoogleUser) {
+        const token = createToken(user._id, user.email);
 
-//         }
+        return res.status(200).json({
+          success: true,
+          message: "User Logged In successfully",
+          token,
+        });
+      } else {
+        return res.status(401).json({
+          success: false,
+          message: "User does not exists",
+        });
+      }
+    } else {
+      const user = await User.findOne({ email });
 
+      if (!user) {
+        return res.status(401).json({
+          success: false,
+          message: "User does not exists",
+        });
+      }
 
-//     }catch(err){
-//         res.status(500).json({
-//             success: false,
-//             message: err.message
-//         })
-//     }
-// }
+      if (user.isGoogleUser) {
+        return res.status(401).json({
+          success: false,
+          message: "User does not exists",
+        });
+      }
 
+      const isMatch = await bcrypt.compare(password, user.password);
 
-// exports.isLogin = async (req,res) => {
-//     try{
-//         const user = await User.findById(req.user._id)
+      if (!isMatch) {
+        return res.status(400).json({
+          success: false,
+          message: "Wrong Credentials",
+        });
+      } else {
+        const token = createToken(user._id, user.email);
 
-//         if(!user){
-//             return res.status(200).json({
-//                 success: true,
-//                 isLogin: false
-//             })
-//         }
+        return res.status(200).json({
+          success: true,
+          message: "User Logged In successfully",
+          token,
+        });
+      }
+    }
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
 
-//         if(user){
-//             return res.status(200).json({
-//                 success: true,
-//                 isLogin: true,
-//                 user
-//             })
-//         }
+exports.isLogin = async (req,res) => {
+    try{
+        const user = await User.findById(req.user._id)
 
+        if(!user){
+            return res.status(200).json({
+                success: true,
+                isLogin: false
+            })
+        }
 
-//     }catch(err){
-//         res.status(500).json({
-//             success: false,
-//             message: err.message
-//         })
-//     }
-// }
+        if(user){
+            return res.status(200).json({
+                success: true,
+                isLogin: true,
+                user
+            })
+        }
+
+    }catch(err){
+        res.status(500).json({
+            success: false,
+            message: err.message
+        })
+    }
+}

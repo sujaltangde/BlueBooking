@@ -1,9 +1,20 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { HiMiniBars3 } from "react-icons/hi2";
+import {useDispatch, useSelector} from 'react-redux'
+import { logOrNot } from "../../actions/UserActions";
 
 export const Navbar = () => {
   const [toggle, setToggle] = useState(false);
+  const dispatch = useDispatch() ;
+  const { isLogin } = useSelector(state => state.user) ;
+
+
+  const logOUt = () => {
+    localStorage.removeItem("token101") ;
+    dispatch(logOrNot())
+  }
+
 
   return (
     <>
@@ -27,12 +38,20 @@ export const Navbar = () => {
             <Link onClick={()=>setToggle(!toggle)} to="/about" className="font-medium hover:underline text-lg">
               About
             </Link>
-            <Link onClick={()=>setToggle(!toggle)}
+            
+            {
+              isLogin ?
+
+              <button onClick={() => logOUt()}
+            className="bg-red-500  hover:bg-red-600 rounded  text-white px-8 font-semibold  py-2 " >Log out</button> :
+              <Link onClick={()=>setToggle(!toggle)}
               to="/auth/login"
               className="bg-blue-500  hover:bg-blue-600 rounded  text-white px-8 font-semibold  py-2 "
-            >
+              >
               Sign In
             </Link>
+          }
+            
           </div>
 
           <div

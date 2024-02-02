@@ -21,22 +21,25 @@ export const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
 
-export const signInSignUpWithGoogle = () => {
-    return new Promise((resolve, reject) => {
-      signInWithRedirect(auth, provider)
-        .then((result) => {
-          const userData = {
-            name: result.user.displayName,
-            email: result.user.email,
-          };
-          resolve(userData);
-        })
-        .catch((error) => {
-          console.log(error);
-          reject(error); 
-        });
-    });
-  };
+export const signInSignUpWithGoogle = async () => {
+  try {
+    // Sign in with Google using a popup
+    const result = await signInWithPopup(auth, provider);
+
+    // The signed-in user information
+    const user = result.user;
+
+    // You can now access user data, such as uid, displayName, email, etc.
+    return {name: user.displayName, email: user.email} ;
+
+    // Return user data or perform any other actions with the user object
+    
+  } catch (error) {
+    // Handle errors, such as user cancellation or authentication failure
+    console.error("Google Sign In Error:", error.message);
+    return null;
+  }
+};
 
 
 

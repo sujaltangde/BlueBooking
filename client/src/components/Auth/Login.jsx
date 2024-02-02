@@ -1,19 +1,44 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { signInSignUpWithGoogle } from "../../Firebase";
 import { MetaData } from '../MetaData'
+// import { TbLoader2 } from 'react-icons/tb'
+import { loginUser } from '../../actions/UserActions'
+import { useDispatch, useSelector } from 'react-redux'
 
 
 export const Login = () => {
   const [checked, setChecked] = useState(false);
   const [userData, setUserData] = useState({});
 
+  const { loading, isLogin } = useSelector(state => state.user)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+
+  useEffect(() => {
+    if (isLogin) {
+      navigate("/")
+    }
+  }, [isLogin])
+
   const loginWithGoogle = async () => {
     try {
       const googleUserData = await signInSignUpWithGoogle();
-      console.log(googleUserData);
+      // console.log(googleUserData);
+
+      const data = {
+        email: googleUserData.email, 
+        password: "xyzxyz", 
+        googleLogin: true, 
+      }
+
+      console.log(data)
+      
+      dispatch(loginUser(data))
+
     } catch (error) {
       console.error(error);
     }
@@ -22,8 +47,18 @@ export const Login = () => {
   const login = (e) => {
     e.preventDefault();
 
-    console.log(userData);
+    const data = {
+      email: userData.email, 
+      password: userData.password, 
+      googleLogin: false, 
+    }
+
+    console.log(data)
+
+    dispatch(loginUser(data))
   };
+
+  
 
   return (
     <>
@@ -87,7 +122,7 @@ export const Login = () => {
                 onClick={() => setChecked(!checked)}
                 className="flex cursor-pointer items-center gap-2"
               >
-                <input type="checkbox" checked={checked} name="" id="" />{" "}
+                <input type="checkbox" checked={checked} onChange={() => setChecked(!checked)} name="" id="" />{" "}
                 <p className="text-sm">I agree to the Terms and Conditions.</p>
               </div>
               <div className="pt-1">

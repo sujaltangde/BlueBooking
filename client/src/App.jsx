@@ -11,15 +11,34 @@ import { NotFound } from "./components/NotFound/NotFound";
 import { Support } from "./components/Support/Support";
 import 'react-toastify/dist/ReactToastify.css';
 import { Footer } from "./components/Footer/Footer";
+import {useSelector, useDispatch} from 'react-redux'
+import { logOrNot } from "./actions/UserActions";
 
 function App() {
   const [path, setPath] = useState("");
 
   let location = useLocation();
 
+  const dispatch = useDispatch()
+  const { isLogin } = useSelector(state => state.user)
+
+
+//   useEffect(() => {
+
+//     dispatch(me());
+
+// }, [dispatch,isLogin]);
+
+
+useEffect(() => {
+  const LogOrNot = () => {
+    dispatch(logOrNot());
+  }
+  LogOrNot()
+}, []);
+
   useEffect(() => {
     setPath(location.pathname);
-    console.log(location.pathname);
   }, [location]);
 
   return (

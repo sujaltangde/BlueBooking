@@ -5,6 +5,7 @@
 @tailwind utilities;
 
 
+
 body{
     /* font-family: 'Open Sans', sans-serif; */
 font-family: 'Ubuntu', sans-serif;
@@ -20,6 +21,11 @@ font-family: 'Ubuntu', sans-serif;
   color: #3803FF;
 }
 
+.swal2-popup {
+ 
+  font-family: 'Ubuntu', sans-serif;
+  /* font-family: 'Open Sans', sans-serif; */
+}
 
 .loader {
     position: relative;

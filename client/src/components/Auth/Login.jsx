@@ -27,7 +27,7 @@ export const Login = () => {
   const loginWithGoogle = async () => {
     try {
       const googleUserData = await signInSignUpWithGoogle();
-      // console.log(googleUserData);
+      console.log(googleUserData);
 
       const data = {
         email: googleUserData.email, 

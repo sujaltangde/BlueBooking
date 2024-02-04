@@ -23,16 +23,15 @@ const provider = new GoogleAuthProvider();
 
 export const signInSignUpWithGoogle = async () => {
   try {
-    // Sign in with Google using a popup
+    
     const result = await signInWithPopup(auth, provider);
 
-    // The signed-in user information
     const user = result.user;
 
-    // You can now access user data, such as uid, displayName, email, etc.
+    console.log("Helllo",{name: user.displayName, email: user.email})
+
     return {name: user.displayName, email: user.email} ;
 
-    // Return user data or perform any other actions with the user object
     
   } catch (error) {
     // Handle errors, such as user cancellation or authentication failure

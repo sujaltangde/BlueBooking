@@ -28,8 +28,6 @@ export const signInSignUpWithGoogle = async () => {
 
     const user = result.user;
 
-    console.log("Helllo",{name: user.displayName, email: user.email})
-
     return {name: user.displayName, email: user.email} ;
 
     

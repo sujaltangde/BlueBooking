@@ -14,7 +14,7 @@ export const registerUser = (userData) => async (dispatch) => {
     try {
         dispatch(registerRequest())
 
-        const { data } = await axios.post("http://localhost:5000/api/register", userData);
+        const { data } = await axios.post("http://192.168.43.41:5000/api/register", userData);
 
         dispatch(registerSuccess())
         localStorage.setItem('token101', data.token)
@@ -36,7 +36,7 @@ export const loginUser = (userData) => async (dispatch) => {
     try {
         dispatch(loginRequest())
 
-        const { data } = await axios.post("http://localhost:5000/api/login", userData);
+        const { data } = await axios.post("http://192.168.43.41:5000/api/login", userData);
 
         dispatch(loginSuccess())
         localStorage.setItem('token101', data.token)
@@ -59,7 +59,7 @@ export const logOrNot = () => async (dispatch) => {
             }
         }
 
-        const { data } = await axios.get("http://localhost:5000/api/isLogin", config);
+        const { data } = await axios.get("http://192.168.43.41:5000/api/isLogin", config);
 
         dispatch(isLoginSuccess(data.isLogin))
 

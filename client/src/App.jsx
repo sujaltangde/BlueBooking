@@ -13,6 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Footer } from "./components/Footer/Footer";
 import {useSelector, useDispatch} from 'react-redux'
 import { logOrNot } from "./actions/UserActions";
+import { Account } from "./components/User/Account";
 
 
 
@@ -63,6 +64,9 @@ useEffect(() => {
 
         <Route path="/auth/login" element={<Login />} />
         <Route path="/auth/register" element={<Register />} />
+
+        <Route path="/account" element={<Account/>} />
+
       </Routes>
 
       <Footer/>

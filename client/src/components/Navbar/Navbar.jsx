@@ -116,13 +116,13 @@ const logOut = () => {
             >
               Support
             </Link>
-            <Link
+            {!isLogin && <Link
               onClick={() => setToggle(!toggle)}
               to="/auth/login"
               className="text-lg font-medium"
             >
               Sign in
-            </Link>
+            </Link>}
           </div>
         </div>
       </div>

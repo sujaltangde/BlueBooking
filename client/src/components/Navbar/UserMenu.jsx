@@ -1,5 +1,5 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
+import { Box } from '@mui/material';
 import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import LocalHotelRoundedIcon from "@mui/icons-material/LocalHotelRounded";
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import Logout from "@mui/icons-material/Logout";
+import CssBaseline from "@mui/material/CssBaseline";
 
 export const UserMenu = (props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -70,17 +71,17 @@ export const UserMenu = (props) => {
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
         <MenuItem onClick={handleClose}>
-          <Link to="/profile">
+          <Link to="/account" className="flex items-center">
             <ListItemIcon>
-              <PersonRoundedIcon fontSize="small" />
+              <div className="pt-0"><PersonRoundedIcon fontSize="small" /></div>
             </ListItemIcon>{" "}
-            My Profile
+            <div className="pr-1">My Account</div>
           </Link>
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          <Link to="bookings">
+          <Link to="/bookings">
             <ListItemIcon>
-              <LocalHotelRoundedIcon fontSize="small" />
+            <div className="pt-1"><LocalHotelRoundedIcon fontSize="small" /></div>
             </ListItemIcon>
             My Bookings
           </Link>
@@ -89,7 +90,7 @@ export const UserMenu = (props) => {
 
         <MenuItem onClick={props.logout}>
           <ListItemIcon>
-            <Logout fontSize="small" />
+          <div className="pt-0"><Logout fontSize="small" /></div>
           </ListItemIcon>
           Logout
         </MenuItem>

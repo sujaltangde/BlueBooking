@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { MetaData } from '../MetaData'
+import { Carousel } from "./Carousel";
 
 
 
@@ -39,8 +40,12 @@ export const Home = () => {
             </p>
           </div>
         </div>
-        <div>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Asperiores quibusdam explicabo magnam impedit quis adipisci aperiam deserunt, ex reiciendis expedita quasi ipsam possimus laudantium illum numquam omnis modi error voluptatibus sint tenetur? Animi dignissimos laborum odio aliquid dolorem molestias ab dolor! Quasi laborum ducimus, fugiat sint aspernatur nulla totam officia quas numquam, at reprehenderit dolore. Maiores, minima eum ut et quisquam voluptates? Sed distinctio tenetur nihil, cumque voluptatibus quibusdam delectus consectetur non repellat ut magnam nam neque facilis hic! Sapiente odio eveniet quidem eum error. Similique aspernatur iste, harum eum id suscipit necessitatibus consequatur quidem reiciendis ea omnis incidunt nesciunt repudiandae, esse corrupti delectus, corporis dolorum quas pariatur error iure! Necessitatibus veritatis ab neque excepturi laudantium autem illum ipsam vitae quaerat sit similique animi laboriosam, quisquam rem distinctio commodi facilis sequi, doloribus adipisci ipsum repudiandae aut explicabo cum. Optio reiciendis officia culpa? Magnam voluptatem possimus molestiae deleniti voluptas suscipit, sapiente soluta, amet alias magni eos quidem reprehenderit vitae earum necessitatibus minima in consectetur aperiam perspiciatis esse officiis reiciendis pariatur nam! Aliquid temporibus quo dolor hic ea, sequi deserunt repudiandae recusandae dolorem laboriosam rerum. Dolorum porro totam dolore consequuntur officiis, beatae provident. Soluta et illum culpa totam. Dolorem autem qui natus.
+        <div className="pt-20">
+              <div>
+
+                <Carousel/>
+
+              </div>
         </div>
       </div>
     </>

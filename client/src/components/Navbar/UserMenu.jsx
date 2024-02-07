@@ -70,22 +70,22 @@ export const UserMenu = (props) => {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem onClick={handleClose}>
           <Link to="/account" className="flex items-center">
+        <MenuItem onClick={handleClose}>
             <ListItemIcon>
               <div className="pt-0"><PersonRoundedIcon fontSize="small" /></div>
             </ListItemIcon>{" "}
             <div className="pr-1">My Account</div>
-          </Link>
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+          </Link>
           <Link to="/bookings">
+        <MenuItem onClick={handleClose}>
             <ListItemIcon>
             <div className="pt-1"><LocalHotelRoundedIcon fontSize="small" /></div>
             </ListItemIcon>
             My Bookings
-          </Link>
         </MenuItem>
+          </Link>
         <Divider />
 
         <MenuItem onClick={props.logout}>

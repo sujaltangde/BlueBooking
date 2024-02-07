@@ -70,7 +70,7 @@ export const Login = () => {
             <div className="pt-4">
               <button
                 onClick={() => loginWithGoogle()}
-                className="border flex items-center gap-2 py-2 px-4 text-sm bg-white  rounded-sm shadow-sm focus:outline-none"
+                className="border shadow-sm flex items-cente border-gray-200  hover:bg-gray-100 w-full gap-2 py-2 px-4 justify-center text-sm bg-white  rounded-sm  focus:outline-none"
               >
                 <span>
                   <img
@@ -80,10 +80,13 @@ export const Login = () => {
                     loading="lazy"
                   />
                 </span>{" "}
-                <span className="font-medium">Sign in with Google</span>
+                <span className="font-medium ">Sign in with Google</span>
               </button>
             </div>
-            <form onSubmit={login} className="pt-5  flex flex-col gap-3">
+            <div>
+              <p className="text-center text-sm">or</p>
+            </div>
+            <form onSubmit={login} className="  flex flex-col gap-3">
               <div className="flex flex-col ">
                 <div className="flex items-center border  border-gray-400 pl-1  py-1">
                   <MdOutlineMailOutline className="text-gray-400" size={25} />

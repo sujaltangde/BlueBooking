@@ -12,25 +12,13 @@ export const Navbar = () => {
   const navigate = useNavigate();
   const { isLogin } = useSelector((state) => state.user);
 
-  const logout = () => {
+  const logOut = () => {
     localStorage.removeItem("token101");
     dispatch(logOrNot());
     navigate("/");
     toast.success("Log out successful !");
   };
 
-const logOut = () => {
-  Swal.fire({
-    title: "Are you sure you want to logout ?",
-    confirmButtonColor: "#DD6B55",
-    showCancelButton: true,
-    confirmButtonText: "Logout",
-  }).then((result) => {
-    if (result.isConfirmed) {
-     logout() ;
-    } 
-  });
-}
 
 
   return (

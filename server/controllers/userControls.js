@@ -159,3 +159,33 @@ exports.isLogin = async (req,res) => {
         })
     }
 }
+
+exports.getLoginUser = async (req,res) => {
+  try{  
+
+    
+
+    const user = await User.findById(req.user._id) ;
+
+    const userData = {
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      isGoogleUser: user.isGoogleUser,
+      role: user.role,
+      createdAt: user.createdAt,      
+    }
+
+
+    res.status(200).json({
+        success: true,
+        user: userData
+    })
+
+  }catch(err){
+    res.status(500).json({
+      success: false,
+      message: err.message
+  })
+  }
+}

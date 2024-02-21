@@ -3,6 +3,10 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+
+
+
+
 const data = [
   {
     name: "Image 1",
@@ -45,24 +49,35 @@ const data = [
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
-    <div
+    <div className="md:flex hidden">
+
+    <img
+      src="/images/right_arrow.png" 
       className={className}
-      style={{ ...style, display: "block", background: "red" }}
+      style={{ ...style, display: "block", background: "white", }}
       onClick={onClick}
-    />
-  );
-}
+      alt="Previous"
+      />
+      </div>
+
+    );
+  }
+   
 
 function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
+  
   return (
-    <img
-      src="/images/googleIcon.png" // Specify the path to your arrow image
+    <div className="md:flex hidden">
+      <img
+      src="/images/left_arrow.png" 
       className={className}
       style={{ ...style, display: "block", background: "white", }}
       onClick={onClick}
       alt="Previous"
     />
+    </div>
+    
   );
 }
 
@@ -81,7 +96,7 @@ export const Carousel = () => {
 
   return (
     <>
-      <div className="w-3/4 m-auto">
+      <div className="md:w-5/6 w-5/6 md:m-auto mx-2 ">
         <div className="mt-20 slider-container">
           <Slider {...settings}>
             {data.map((e) => (
@@ -90,7 +105,7 @@ export const Carousel = () => {
                   <img
                     src={e.img}
                     alt="image.jpg"
-                    className="h-44 w-44 rounded-full"
+                    className="md:h-44 md:w-44 h-12 rounded-full"
                   />
                 </div>
 
@@ -104,6 +119,8 @@ export const Carousel = () => {
               </div>
             ))}
           </Slider>
+    
+          
         </div>
       </div>
     </>

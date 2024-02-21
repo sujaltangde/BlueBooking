@@ -71,20 +71,20 @@ export const logOrNot = () => async (dispatch) => {
 }
 
 
-// export const me = () => async (dispatch) => {
-//     try {
-//         dispatch(getMeRequest())
-//         const config = {
-//             headers: {
-//                 Authorization: `Bearer ${localStorage.getItem('token101')}`
-//             }
-//         }
+export const me = () => async (dispatch) => {
+    try {
+        dispatch(getMeRequest())
+        const config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token101')}`
+            }
+        }
 
-//         const { data } = await axios.get("https://joblane-b.onrender.com/api/v1/me", config);
+        const { data } = await axios.get("http://192.168.43.41:5000/api/me", config);
 
-//         dispatch(getMeSuccess(data.user))
+        dispatch(getMeSuccess(data.user))
 
-//     } catch (err) {
-//         dispatch(getMeFail())
-//     }
-// }
+    } catch (err) {
+        dispatch(getMeFail())
+    }
+}

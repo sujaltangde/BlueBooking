@@ -14,6 +14,7 @@ import { Footer } from "./components/Footer/Footer";
 import {useSelector, useDispatch} from 'react-redux'
 import { logOrNot } from "./actions/UserActions";
 import { Account } from "./components/User/Account";
+import { me } from './actions/UserActions'
 
 
 
@@ -26,11 +27,11 @@ function App() {
   const { isLogin } = useSelector(state => state.user)
 
 
-//   useEffect(() => {
+  useEffect(() => {
 
-//     dispatch(me());
+    dispatch(me());
 
-// }, [dispatch,isLogin]);
+}, [dispatch,isLogin]);
 
 
 useEffect(() => {

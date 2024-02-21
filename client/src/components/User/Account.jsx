@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import countryCode from "./countryCode.json";
+import {Loader} from "../Loader"
 import { MetaData } from "../MetaData";
+import { useSelector, useDispatch } from "react-redux";
 
 export const Account = () => {
   const [editNameTog, setEditNameTog] = useState(false);
@@ -12,12 +13,14 @@ export const Account = () => {
   const [editGenderTog, setEditGenderTog] = useState(false);
   const [editAdrTog, setEditAdrTog] = useState(false);
 
-  const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch() ;
 
-  const toggleSelectVisibility = () => {
-    setIsOpen(!isOpen);
-  };
+  const { loading, me} = useSelector((state) => state.user)
 
+
+  console.log(me)
+
+  
   
 
   return (
@@ -25,7 +28,7 @@ export const Account = () => {
 
     <MetaData title="Account" />
       <div className="min-h-screen pt-16 bg-custom-color">
-        <div className="md:px-20 px-4">
+       {loading? <Loader/> :  <div className="md:px-20 px-4">
           <div className="md:flex hidden w-full gap-36 pt-8">
             <div className="pt-3 flex flex-col">
               <div className="relative h-52 w-52 overflow-hidden">
@@ -80,7 +83,7 @@ export const Account = () => {
                     
                     <div className=" w-2/3 pl-6 ">
                       {!editNameTog ? (
-                        <p>Sam Altman</p>
+                        <p>{me.name ? me.name : ""}</p>
                       ) : (
                         <>
                           <div className="flex gap-3">
@@ -124,7 +127,7 @@ export const Account = () => {
                     </div>
                     <div className="  w-2/3 pl-6 ">
                       {!editEmailTog ? (
-                        <p>samaltman@mail.com</p>
+                        <p>{me.email? me.email : "" }</p>
                       ) : (
                         <>
                           <div className="flex gap-3">
@@ -735,6 +738,7 @@ export const Account = () => {
             </div>
           </div>
         </div>
+        }
       </div>
     </>
   );
